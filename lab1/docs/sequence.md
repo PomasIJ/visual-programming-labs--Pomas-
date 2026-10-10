@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
     participant U as Участник
     participant S as Система регистрации
