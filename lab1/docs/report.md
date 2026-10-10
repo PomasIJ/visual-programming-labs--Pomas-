@@ -4,7 +4,7 @@
 
 ![BPMN Diagram](lab1/diagrams/process-bpmn.png)
 
-![Flowchart](lab1/docs/flowchart.png)
+![Flowchart](lab1/docs/flowchart.png.png)
 
 ![Sequence Diagram](lab1/docs/sequence.png)
 
