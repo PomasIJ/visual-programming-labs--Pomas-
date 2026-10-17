@@ -1,0 +1,159 @@
+[
+    {
+        "id": "8ba703f6a97b35a3",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c40b60973bdcedef",
+        "type": "inject",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 510,
+        "y": 1460,
+        "wires": [
+            [
+                "1510d153b34514dc"
+            ]
+        ]
+    },
+    {
+        "id": "1510d153b34514dc",
+        "type": "function",
+        "z": "8ba703f6a97b35a3",
+        "name": "function 1",
+        "func": "msg.payload = 20 + Math.random() * 10;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 1480,
+        "wires": [
+            [
+                "76c2a405a93d9f2a",
+                "3f74e2250cfc101a"
+            ]
+        ]
+    },
+    {
+        "id": "76c2a405a93d9f2a",
+        "type": "ui_gauge",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "group": "4797281511c4704d",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1070,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "3f74e2250cfc101a",
+        "type": "ui_chart",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "group": "4797281511c4704d",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1030,
+        "y": 1540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4797281511c4704d",
+        "type": "ui_group",
+        "name": "Датчик температуры",
+        "tab": "557d9f1874275572",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "557d9f1874275572",
+        "type": "ui_tab",
+        "name": "Моя панель",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "9d65790b4b875d5f",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]

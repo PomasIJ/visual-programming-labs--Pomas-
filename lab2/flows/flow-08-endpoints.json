@@ -1,0 +1,197 @@
+[
+    {
+        "id": "8ba703f6a97b35a3",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a76174dfda70a7e5",
+        "type": "http in",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "url": "/api/text",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 1310,
+        "y": 1420,
+        "wires": [
+            [
+                "0245e054f5e9a0db"
+            ]
+        ]
+    },
+    {
+        "id": "0245e054f5e9a0db",
+        "type": "template",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Привет! Это простой текст от Помас",
+        "output": "str",
+        "x": 1520,
+        "y": 1420,
+        "wires": [
+            [
+                "bc977612d1c1f4b7"
+            ]
+        ]
+    },
+    {
+        "id": "bc977612d1c1f4b7",
+        "type": "http response",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1770,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "30cdb4caa6b06ff1",
+        "type": "http in",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "url": "/api/info",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 1290,
+        "y": 1540,
+        "wires": [
+            [
+                "8a29f662aa54e95c"
+            ]
+        ]
+    },
+    {
+        "id": "6abc5589fb62672e",
+        "type": "http response",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1710,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "8a29f662aa54e95c",
+        "type": "template",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n  \"name\": \"Помас\",\n  \"group\": \"ВП\",\n  \"year\": 2026\n}",
+        "output": "json",
+        "x": 1480,
+        "y": 1540,
+        "wires": [
+            [
+                "6abc5589fb62672e"
+            ]
+        ]
+    },
+    {
+        "id": "e4023801d545d2da",
+        "type": "http in",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "url": "/api/items/:id",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 1320,
+        "y": 1680,
+        "wires": [
+            [
+                "31a5ad4c5af22630"
+            ]
+        ]
+    },
+    {
+        "id": "31a5ad4c5af22630",
+        "type": "function",
+        "z": "8ba703f6a97b35a3",
+        "name": "function 1",
+        "func": "let id = msg.req.params.id; // Берем id из URL\n\nif (isNaN(id)) {\n    // Если ввели не число (буквы)\n    msg.statusCode = 400;\n    msg.payload = { \"error\": \"ID must be a number\" };\n} else if (Number(id) > 100) {\n    // Если число больше 100\n    msg.statusCode = 404;\n    msg.payload = { \"error\": \"Item not found\" };\n} else {\n    // Если всё хорошо\n    msg.statusCode = 200;\n    msg.payload = { \"id\": id, \"name\": \"Item #\" + id, \"available\": true };\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1500,
+        "y": 1680,
+        "wires": [
+            [
+                "803950387559b047"
+            ]
+        ]
+    },
+    {
+        "id": "803950387559b047",
+        "type": "switch",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "200",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 1690,
+        "y": 1680,
+        "wires": [
+            [
+                "0f1e15558ce0edbe"
+            ],
+            [
+                "de47aa52ef255fde"
+            ]
+        ]
+    },
+    {
+        "id": "0f1e15558ce0edbe",
+        "type": "http response",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1890,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "de47aa52ef255fde",
+        "type": "http response",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1890,
+        "y": 1720,
+        "wires": []
+    }
+]
