@@ -1,0 +1,126 @@
+[
+    {
+        "id": "8ba703f6a97b35a3",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "4b4aced4de19d7bd",
+        "type": "inject",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "20",
+        "payloadType": "num",
+        "x": 230,
+        "y": 820,
+        "wires": [
+            [
+                "6891afda1f304d4a"
+            ]
+        ]
+    },
+    {
+        "id": "6891afda1f304d4a",
+        "type": "function",
+        "z": "8ba703f6a97b35a3",
+        "name": "function 2",
+        "func": "let inputNumber = msg.payload;\nlet result = inputNumber * 2;\nmsg.payload = result;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 820,
+        "wires": [
+            [
+                "acce9705b00f7e2a"
+            ]
+        ]
+    },
+    {
+        "id": "acce9705b00f7e2a",
+        "type": "switch",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "30",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 630,
+        "y": 820,
+        "wires": [
+            [
+                "029ea8edb0a6f8bf"
+            ],
+            [
+                "2ccee0173fc64cad"
+            ]
+        ]
+    },
+    {
+        "id": "2ccee0173fc64cad",
+        "type": "debug",
+        "z": "8ba703f6a97b35a3",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "029ea8edb0a6f8bf",
+        "type": "debug",
+        "z": "8ba703f6a97b35a3",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 800,
+        "wires": []
+    }
+]
