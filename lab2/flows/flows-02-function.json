@@ -1,0 +1,68 @@
+[
+    {
+        "id": "b757304d28aae1b6",
+        "type": "inject",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"name\": \"Помас\", \"values\": [10, 20, 30]}",
+        "payloadType": "json",
+        "x": 240,
+        "y": 540,
+        "wires": [
+            [
+                "36eb93747899323d"
+            ]
+        ]
+    },
+    {
+        "id": "36eb93747899323d",
+        "type": "function",
+        "z": "8ba703f6a97b35a3",
+        "name": "function 1",
+        "func": "// Получаем данные из предыдущего узла\nconst inputData = msg.payload; \n\n// Создаем массив для демонстрации\nlet processedValues = [];\n\n// Проверяем, пришел ли объект с массивом\nif (inputData && inputData.values) {\n    // Используем цикл for для перебора массива\n    for (let i = 0; i < inputData.values.length; i++) {\n        let currentValue = inputData.values[i];\n        \n        // Условие if/else: если число больше 15, умножаем на 2\n        if (currentValue > 15) {\n            processedValues.push(currentValue * 2);\n        } else {\n            processedValues.push(currentValue);\n        }\n    }\n} else {\n    // Если пришло что-то другое\n    processedValues.push(\"Данные не распознаны\");\n}\n\n// Создаем новый объект для возврата\nconst resultObject = {\n    student: \"Помас\",\n    originalInput: inputData,\n    processed: processedValues,\n    timestamp: new Date().toISOString()\n};\n\n// Возвращаем объект с полем payload\nmsg.payload = resultObject;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 540,
+        "wires": [
+            [
+                "51d48fb2929b2e59"
+            ]
+        ]
+    },
+    {
+        "id": "51d48fb2929b2e59",
+        "type": "debug",
+        "z": "8ba703f6a97b35a3",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 540,
+        "wires": []
+    }
+]

@@ -1,0 +1,56 @@
+[
+    {
+        "id": "8ba703f6a97b35a3",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b220b301c29c4786",
+        "type": "inject",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "\"lab2/Помас/basic\"",
+        "payload": "Помас",
+        "payloadType": "str",
+        "x": 380,
+        "y": 340,
+        "wires": [
+            [
+                "a5bdc626aa1b1050"
+            ]
+        ]
+    },
+    {
+        "id": "a5bdc626aa1b1050",
+        "type": "debug",
+        "z": "8ba703f6a97b35a3",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 340,
+        "wires": []
+    }
+]
