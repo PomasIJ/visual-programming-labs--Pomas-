@@ -1,0 +1,67 @@
+[
+    {
+        "id": "d5ea960a9be84b00",
+        "type": "template",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n  \"student\": \"{{payload.name}}\",\n  \"group\": \"{{payload.group}}\",\n  \"message\": \"Студент {{payload.name}} из группы {{payload.group}} выполняет лабу {{payload.lab}}\"\n}",
+        "output": "json",
+        "x": 980,
+        "y": 900,
+        "wires": [
+            [
+                "121c37dd175c75f2"
+            ]
+        ]
+    },
+    {
+        "id": "1be0e1956341376d",
+        "type": "inject",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"name\": \"Помас\", \"group\": \"ВП\", \"lab\": 2}",
+        "payloadType": "json",
+        "x": 740,
+        "y": 900,
+        "wires": [
+            [
+                "d5ea960a9be84b00"
+            ]
+        ]
+    },
+    {
+        "id": "121c37dd175c75f2",
+        "type": "debug",
+        "z": "8ba703f6a97b35a3",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1180,
+        "y": 900,
+        "wires": []
+    }
+]
