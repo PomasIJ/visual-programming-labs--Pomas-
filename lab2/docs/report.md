@@ -56,7 +56,7 @@
 ![MQTT](../screenshots/flow-07-mqtt.png)
 
 ### Часть 2.8 — GET-эндпоинты
-*(Примечание: если у вас сохранено несколько скриншотов для 2.8, замените имена файлов ниже на ваши)*
+
 
 ![Endpoints 1](../screenshots/flow-08-endpoints.png)
 ![Endpoints 2](../screenshots/flow-08-endpoints1.png)
