@@ -1,0 +1,141 @@
+[
+    {
+        "id": "8ba703f6a97b35a3",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d1c8602192f80e56",
+        "type": "function",
+        "z": "8ba703f6a97b35a3",
+        "name": "function 1",
+        "func": "let count = flow.get(\"flowCounter\") || 0;\ncount++;\nflow.set(\"flowCounter\", count);\n\nmsg.payload = { flowCounter: count, comment: \"Значение в flow context\" };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 780,
+        "wires": [
+            [
+                "bcb01b3859b8193e"
+            ]
+        ]
+    },
+    {
+        "id": "bcb01b3859b8193e",
+        "type": "debug",
+        "z": "8ba703f6a97b35a3",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1140,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "91ae849f19903253",
+        "type": "inject",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 740,
+        "y": 820,
+        "wires": [
+            [
+                "d1c8602192f80e56"
+            ]
+        ]
+    },
+    {
+        "id": "df9675f3a1dc46cb",
+        "type": "inject",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 700,
+        "y": 880,
+        "wires": [
+            [
+                "f94dbe82d3e34d21"
+            ]
+        ]
+    },
+    {
+        "id": "f94dbe82d3e34d21",
+        "type": "function",
+        "z": "8ba703f6a97b35a3",
+        "name": "function 2",
+        "func": "let count = global.get(\"globalCounter\") || 0;\ncount++;\nglobal.set(\"globalCounter\", count);\n\nmsg.payload = { globalCounter: count, comment: \"Значение в global context\" };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 880,
+        "wires": [
+            [
+                "942b823b4c0a4769"
+            ]
+        ]
+    },
+    {
+        "id": "942b823b4c0a4769",
+        "type": "debug",
+        "z": "8ba703f6a97b35a3",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 880,
+        "wires": []
+    }
+]

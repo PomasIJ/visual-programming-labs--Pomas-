@@ -1,0 +1,142 @@
+[
+    {
+        "id": "8ba703f6a97b35a3",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a2a2bf53a77838d3",
+        "type": "inject",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"name\": \"Помас\", \"lab\": 2, \"status\": \"done\"}",
+        "payloadType": "json",
+        "x": 720,
+        "y": 820,
+        "wires": [
+            [
+                "d1c8602192f80e56"
+            ]
+        ]
+    },
+    {
+        "id": "d1c8602192f80e56",
+        "type": "function",
+        "z": "8ba703f6a97b35a3",
+        "name": "function 1",
+        "func": "msg.payload = JSON.stringify({\n    data: msg.payload,\n    saved_at: new Date().toISOString()\n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 820,
+        "wires": [
+            [
+                "a4cddfa517730a8b"
+            ]
+        ]
+    },
+    {
+        "id": "a4cddfa517730a8b",
+        "type": "file",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "filename": "/data/test.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1150,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "04866dfd641165d6",
+        "type": "file in",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "filename": "/data/test.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 930,
+        "y": 900,
+        "wires": [
+            [
+                "bcb01b3859b8193e"
+            ]
+        ]
+    },
+    {
+        "id": "255c67f0e6aafd12",
+        "type": "inject",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 720,
+        "y": 900,
+        "wires": [
+            [
+                "04866dfd641165d6"
+            ]
+        ]
+    },
+    {
+        "id": "bcb01b3859b8193e",
+        "type": "debug",
+        "z": "8ba703f6a97b35a3",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 900,
+        "wires": []
+    }
+]

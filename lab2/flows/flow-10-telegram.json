@@ -1,0 +1,179 @@
+[
+    {
+        "id": "8ba703f6a97b35a3",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "93a7925d430c9fbd",
+        "type": "function",
+        "z": "8ba703f6a97b35a3",
+        "name": "function 1",
+        "func": "msg.payload = {\n    chatId: msg.payload.chatId,\n    type: \"message\",\n    content: \"Привет! Я бот Помас. Чем могу помочь?\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 740,
+        "wires": [
+            [
+                "c93c4692d38393cf"
+            ]
+        ]
+    },
+    {
+        "id": "c16e8742975d628f",
+        "type": "switch",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "property": "payload.content",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "/start",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "/time",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 750,
+        "y": 780,
+        "wires": [
+            [
+                "93a7925d430c9fbd"
+            ],
+            [
+                "775391dca7e161bc"
+            ],
+            [
+                "1bca17dc6b3fbf5b"
+            ]
+        ]
+    },
+    {
+        "id": "1bca17dc6b3fbf5b",
+        "type": "function",
+        "z": "8ba703f6a97b35a3",
+        "name": "function 2",
+        "func": "// Берем текст, который написал пользователь\nlet text = msg.payload.content || \"\";\n\n// Формируем ответ\nmsg.payload = {\n    chatId: msg.payload.chatId,\n    type: \"message\",\n    content: \"Ты написал: \" + text\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 820,
+        "wires": [
+            [
+                "c93c4692d38393cf"
+            ]
+        ]
+    },
+    {
+        "id": "96e09d684c40ad06",
+        "type": "telegram receiver",
+        "z": "8ba703f6a97b35a3",
+        "name": " tvl_lab2_pomas_bot",
+        "bot": "45f67db063f06a6d",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "hasinput": false,
+        "inputs": 0,
+        "handleallupdates": false,
+        "handleprocessupdates": false,
+        "x": 530,
+        "y": 780,
+        "wires": [
+            [
+                "c16e8742975d628f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c93c4692d38393cf",
+        "type": "telegram sender",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "bot": "45f67db063f06a6d",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 1190,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "775391dca7e161bc",
+        "type": "function",
+        "z": "8ba703f6a97b35a3",
+        "name": "function 3",
+        "func": "// Получаем текущее время в удобном формате\nlet now = new Date().toLocaleString(\"ru-RU\");\n\n// Формируем ответ для Telegram\nmsg.payload = {\n    chatId: msg.payload.chatId,\n    type: \"message\",\n    content: \"Текущее время: \" + now\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 780,
+        "wires": [
+            [
+                "c93c4692d38393cf"
+            ]
+        ]
+    },
+    {
+        "id": "45f67db063f06a6d",
+        "type": "telegram bot",
+        "botname": "tvl_lab2_pomas_bot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "pollinterval": 300,
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": 6667,
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbothost": "0.0.0.0",
+        "localbotport": 8443,
+        "publicbotport": 8443,
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "37d0951f63cda4ca",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-telegrambot": "19.0.3"
+        }
+    }
+]
