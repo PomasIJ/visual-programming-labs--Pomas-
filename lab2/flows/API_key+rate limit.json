@@ -1,0 +1,101 @@
+[
+    {
+        "id": "8ba703f6a97b35a3",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "caa6fce6da2112da",
+        "type": "http in",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "url": "/api/secure",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 640,
+        "y": 780,
+        "wires": [
+            [
+                "313ad1e0215c1afe"
+            ]
+        ]
+    },
+    {
+        "id": "313ad1e0215c1afe",
+        "type": "function",
+        "z": "8ba703f6a97b35a3",
+        "name": "function 1",
+        "func": "// === НАСТРОЙКИ ===\nconst VALID_KEY = \"secret123\"; // Ваш секретный ключ\nconst LIMIT = 3; // Максимум запросов\nconst WINDOW_MS = 60 * 1000; // За 1 минуту (60 000 мс)\n\n// 1. ПРОВЕРКА API-КЛЮЧА\n// Node-RED приводит все заголовки к нижнему регистру, поэтому ищем 'x-api-key'\nconst providedKey = msg.req.headers['x-api-key'];\n\nif (providedKey !== VALID_KEY) {\n    // Если ключ неверный или отсутствует — возвращаем 401\n    msg.statusCode = 401;\n    msg.payload = { error: \"Unauthorized: Invalid or missing X-API-Key\" };\n    return msg;\n}\n\n// 2. ПРОВЕРКА RATE LIMIT\n// Используем global context, чтобы счетчик жил между разными запросами\nlet clientData = global.get(\"rateLimitData\") || {};\n\n// Если для этого ключа еще нет записи, создаем её\nif (!clientData[providedKey]) {\n    clientData[providedKey] = { count: 0, windowStart: Date.now() };\n}\n\nconst now = Date.now();\n\n// Если прошло больше времени, чем окно (1 минута) — сбрасываем счетчик\nif (now - clientData[providedKey].windowStart > WINDOW_MS) {\n    clientData[providedKey].count = 0;\n    clientData[providedKey].windowStart = now;\n}\n\n// Увеличиваем счетчик\nclientData[providedKey].count++;\n\n// Сохраняем обновленные данные обратно в global context\nglobal.set(\"rateLimitData\", clientData);\n\n// Проверяем, не превышен ли лимит\nif (clientData[providedKey].count > LIMIT) {\n    msg.statusCode = 429; // Too Many Requests\n    msg.payload = { error: \"Too Many Requests: Rate limit exceeded\" };\n    return msg;\n}\n\n// === ЕСЛИ ВСЕ ПРОВЕРКИ ПРОЙДЕНЫ ===\n// Возвращаем успешный ответ (или передаем управление дальше)\nmsg.statusCode = 200;\nmsg.payload = {\n    message: \"Access granted!\",\n    requestNumber: clientData[providedKey].count,\n    limit: LIMIT\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 780,
+        "wires": [
+            [
+                "f20dd1c3c6a26eaf"
+            ]
+        ]
+    },
+    {
+        "id": "f20dd1c3c6a26eaf",
+        "type": "switch",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "200",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1030,
+        "y": 780,
+        "wires": [
+            [
+                "d77b04816416e74e"
+            ],
+            [
+                "58fc50f68c432bb1"
+            ]
+        ]
+    },
+    {
+        "id": "d77b04816416e74e",
+        "type": "http response",
+        "z": "8ba703f6a97b35a3",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1170,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "58fc50f68c432bb1",
+        "type": "http response",
+        "z": "8ba703f6a97b35a3",
+        "name": "statusCode",
+        "statusCode": "",
+        "headers": {},
+        "x": 1190,
+        "y": 820,
+        "wires": []
+    }
+]
