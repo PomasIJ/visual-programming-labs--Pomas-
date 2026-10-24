@@ -78,7 +78,7 @@
 ![Context](../screenshots/12-context.png)
 
 ### Ачивка 9 — API key + rate limit
-![API Key](../screenshots/API_key+rate_limit.png)
+![API Key](../screenshots/API_key+rate limit.png)
 
 ---
 
