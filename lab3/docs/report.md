@@ -47,3 +47,103 @@
 **Реализация в моём приложении:**
 
 ![Nav Implemented](../screenshots/screenshots-02-buildguide2.png)
+## Часть 3. Ручная доработка UI
+
+### 3.1. Изменение текста заголовка
+
+Заголовок страницы изменён вручную. Текст «Список фильмов» дополнен именем студента (Илья). Строка «ТВП: Помас» сохранена.
+
+### 3.2. Global variable для цвета
+
+Создал глобальную переменную `primary-color` типа Color (зелёный цвет). Применил её к фону кнопок на странице.
+
+![03-global-variable](../screenshots/screenshots-03-global-variable.png)
+
+### 3.3. Новый стиль
+
+Создал новый стиль для кнопки, использующий переменную `primary-color`. Применил стиль к кнопкам на странице.
+
+![04-style](../screenshots/screenshots-04-style.png)
+
+### 3.4. Готовый компонент
+
+Добавил готовый компонент из UI Components — блок навигации/футер. Настроил его под свою тему (цвет, шрифт).
+
+![05-component](../screenshots/screenshots-05-component.png)
+
+
+## Часть 4. Data и Workflows
+
+### 4.1. Data: новая сущность
+
+**AI-промпт:**
+Я делаю приложение «Список фильмов» на Bubble (no-code).
+Предложи новую сущность (Data Type) для отзывов к фильмам.
+Нужно минимум 3 поля разных типов (text, number, date, yes/no).
+Дай название сущности, список полей с типами и кратким описанием.
+
+text
+
+**Ответ AI:**
+
+Предлагаю сущность **`Review`** (Отзыв).
+
+| Поле | Тип | Описание |
+|---|---|---|
+| `Text` | text | Текст отзыва |
+| `Rating` | number | Оценка фильма (от 1 до 10) |
+| `Date` | date | Дата написания отзыва |
+| `IsSpoiler` | yes/no | Содержит ли отзыв спойлеры |
+
+Всего 4 поля разных типов (text, number, date, yes/no) — соответствует требованию «минимум 3 поля разных типов».
+
+**Созданная сущность в Bubble:**
+
+Тип данных `Review` с полями разных типов.
+
+![06-data-type](../screenshots/screenshots-06-data-type.png)
+
+**Записи в App Data:**
+
+Добавил 3 записи вручную.
+
+![07-data-records](../screenshots/screenshots-07-data-records.png)
+
+
+### 4.2. Workflows: CRUD
+
+**AI-промпт для генерации UI:**
+Создай на новой странице «reviews» интерфейс для CRUD-операций
+с сущностью «Review» (Отзыв). Поля: Text (text),
+Rating (number), Date (date), IsSpoiler (yes/no).
+
+Нужно:
+
+Кнопка «Добавить отзыв» — открывает Popup с формой.
+
+Repeating Group со списком всех отзывов — в каждой ячейке
+текст, рейтинг, дата, статус спойлера, кнопки «Редактировать» и «Удалить».
+
+Кнопка «Редактировать» открывает тот же Popup с заполненными полями.
+
+Кнопка «Удалить» удаляет запись.
+
+text
+
+**Реализованные workflows:**
+
+- **Create**: форма с полями -> кнопка «Сохранить» -> Create a new thing (Review) + Reset inputs.
+- **Read**: Repeating Group с `Search for Reviews`.
+- **Update**: кнопка «Редактировать» -> Make changes to a thing (Current cell's Review).
+- **Delete**: кнопка «Удалить» -> Delete a thing (Current cell's Review).
+
+**Скриншоты:**
+
+**Create (создание записи):**
+![08-workflow-create](../screenshots/screenshots-08-workflow-create.png)
+
+**Update (редактирование записи):**
+![09-workflow-update](../screenshots/screenshots-09-workflow-update.png)
+
+**Delete (удаление записи):**
+![10-workflow-delete](../screenshots/screenshots-09-workflow-delete.png)
