@@ -147,3 +147,17 @@ text
 
 **Delete (удаление записи):**
 ![09-workflow-delete](../screenshots/screenshots-09-workflow-delete.png)
+
+## Часть 5. Ачивка Plugins
+**Плагин:** Discord (Wayne Bennett).
+
+**Что сделано:**
+
+Установил плагин Discord и настроил отправку уведомлений через Webhook. Создал вебхук в Discord (в настройках канала `#обсуждение-текст`), скопировал его URL. В приложении Bubble на странице с отзывами добавил действие плагина `Discord - Send Message To Discord Webhook` в Workflow создания нового отзыва (кнопка «Сохранить»). Настроил параметры: вставил `webhook.id` и `webhook.token`, а в поле `content` собрал динамический текст с помощью `Arbitrary text` и переменных `Result of step 1's Text` и `Result of step 1's Rating`. В поле `username` указал «Кинокритик».
+
+Теперь при добавлении нового отзыва в приложении в Discord-канал автоматически приходит сообщение с реальным текстом отзыва и оценкой.
+
+**Скриншоты:**
+
+**Сообщение, пришедшее в Discord:**
+![Discord Message](../screenshots-12-plugin-)
