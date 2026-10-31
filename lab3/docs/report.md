@@ -143,7 +143,7 @@ text
 ![08-workflow-create](../screenshots/screenshots-08-workflow-create.png)
 
 **Update (редактирование записи):**
-![09-workflow-edit](../screenshots/screenshots-09-workflow-update.png)
+![09-workflow-edit](../screenshots/screenshots-09-workflow-edit.png)
 
 **Delete (удаление записи):**
 ![09-workflow-delete](../screenshots/screenshots-09-workflow-delete.png)
