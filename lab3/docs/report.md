@@ -160,4 +160,4 @@ text
 **Скриншоты:**
 
 **Сообщение, пришедшее в Discord:**
-![Discord Message](../screenshots-12-plugin-,png)
+![Discord Message](../screenshots/screenshots-12-plugin-.png)
