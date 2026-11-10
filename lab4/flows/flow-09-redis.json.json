@@ -1,0 +1,96 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a38c2e4e-7518-46bc-b6de-efbdf4b4e220",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "pomas",
+        "value": "test_value_lab4"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        224,
+        0
+      ],
+      "id": "c93e57be-0edb-4fc5-9762-12260ec07cef",
+      "name": "Redis",
+      "credentials": {
+        "redis": {
+          "id": "at8RpJB5XgB5LcWm",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "key": "pomas",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "65a8f653-e9c9-4727-a917-767ea828ebcc",
+      "name": "Redis1",
+      "credentials": {
+        "redis": {
+          "id": "at8RpJB5XgB5LcWm",
+          "name": "Redis account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Redis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis": {
+      "main": [
+        [
+          {
+            "node": "Redis1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "94fbb2cb-8fbd-49af-a185-ea03d5526682",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "310f1dc035abbd47b7cd2fdfda7174439ea416f16797ca0381bd383ece4aadf2"
+  },
+  "nodeGroups": [],
+  "id": "D6J5BYWnZTqL5fpL",
+  "tags": []
+}
