@@ -49,7 +49,7 @@
 ![Диалог с ботом](../screenshots/chat.png)
 
 **Ссылка на опубликованного бота:** 
-[ВСТАВЬ СЮДА ТВОЮ ССЫЛКУ ИЗ TYPEBOT]
+https://typebot.co/lead-generation-smrzkj7
 
 ---
 
