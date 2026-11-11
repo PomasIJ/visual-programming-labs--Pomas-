@@ -17,11 +17,6 @@
 volume (для `/home/node/.n8n` и `/data`). Локальное приложение доступно
 по адресу `http://localhost:5678`.
 
-<figure>
-<img src="../screenshots/01-version.png" alt="n8n version" />
-<figcaption aria-hidden="true">n8n version</figcaption>
-</figure>
-
 ------------------------------------------------------------------------
 
 ## Часть 2. Изучение нод и создание workflow
@@ -141,7 +136,7 @@ HTTPS URL. 4. Открыл URL на телефоне с отключенным W
 ![Achievement](../screenshots/Achievement.png)ограниченное время, пока открыто окно терминала).
 
 <figure>
-<img src="../screenshots/Achievement.png" alt="Achievement" />
+<img src="../screenshots/Achievment.png" />
 <figcaption aria-hidden="true">Achievement</figcaption>
 </figure>
 
