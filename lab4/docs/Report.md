@@ -134,7 +134,11 @@ HTTPS URL. 4. Открыл URL на телефоне с отключенным W
 успешно загрузился на мобильном устройстве.
 
 **Публичный URL:** `https://xxxx.a.free.pinggy.link` (адрес действует
-ограниченное время, пока открыто окно терминала).
+**Запуск туннеля в терминале:**
+![Ach2](../screenshots/Ach2.png)
+
+**Открытие n8n по публичному адресу с мобильного устройства:**
+![Achievement](../screenshots/Achievement.png)ограниченное время, пока открыто окно терминала).
 
 <figure>
 <img src="../screenshots/Achievement.png" alt="Achievement" />
