@@ -54,14 +54,6 @@
 
 Установлено расширение **ButtonEffect**. В блоках добавлен вызов `ButtonEffect1.CreateButton` для инициализации кнопки и `ButtonEffect1.SetAnimationStyle` (стиль Wave) для настройки эффекта нажатия.
 
-![extension](../screenshots/Scr2.png)
-
-### 5.5. Ачивка 12: Датчик приближения (Proximity Sensor)
-
-При поднесении руки к экрану (датчику) текст в нижнем Label меняется на «Я ТЕБЯ ВИЖУ!!!».
-
-![ISEEYOUscreen](../screenshots/Scr3.png)
-
 ## 6. Ограничения бесплатного тарифа Kodular
 
 - До 10 проектов.
